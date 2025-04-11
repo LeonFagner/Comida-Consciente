@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
             </div>
             <div className="flex gap-2">
               <Link to="/login">
-                <Button variant="outline" className="border-cc-green-500 text-cc-green-700">Entrar</Button>
+                <Button variant="outline" className="border-cc-green-500 text-cc-green-700 hover:bg-cc-green-700" >Entrar</Button>
               </Link>
               <Link to="/cadastro">
                 <Button className="bg-cc-green-600 hover:bg-cc-green-700">Cadastrar</Button>

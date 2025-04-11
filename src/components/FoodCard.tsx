@@ -16,6 +16,7 @@ interface FoodCardProps{
   onSchedule?: () => void;
 }
 
+
 const FoodCard: React.FC<FoodCardProps> = ({
   title,
   type,
@@ -25,7 +26,7 @@ const FoodCard: React.FC<FoodCardProps> = ({
   distance,
   image,
   urgent = false,
-  onSchedule
+  onSchedule,
 }) => {
   return (
     <Card className="card-hover overflow-hidden">

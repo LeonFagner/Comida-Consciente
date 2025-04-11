@@ -10,6 +10,10 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
+import imgLegumes from '../assets/images/img-legumes.jpg';
+import imgFrutas from '../assets/images/img-frutasDiversas.jpg';
+import imgPaes from '../assets/images/img-paesArtesanais.jpg';
+
 
 const Index: React.FC = () => {
   const { toast } = useToast();
@@ -25,6 +29,7 @@ const Index: React.FC = () => {
       location: "Mercado Boa Escolha, São Paulo",
       distance: "1.2km",
       urgent: true,
+      imagem: imgFrutas
     },
     {
       id: 2,
@@ -34,6 +39,7 @@ const Index: React.FC = () => {
       expirationDate: "28/04/2025",
       location: "Padaria Sabor & Arte, São Paulo",
       distance: "3.5km",
+      imagem: imgPaes
     },
     {
       id: 3,
@@ -43,6 +49,7 @@ const Index: React.FC = () => {
       expirationDate: "30/04/2025",
       location: "Feira da Praça, São Paulo",
       distance: "0.8km",
+      imagem: imgLegumes
     },
   ];
 
@@ -89,6 +96,7 @@ const Index: React.FC = () => {
                   distance={donation.distance}
                   urgent={donation.urgent}
                   onSchedule={handleSchedule}
+                  image={donation.imagem}
                 />
               ))}
             </div>

@@ -19,7 +19,7 @@ const StatItem: React.FC<StatItemProps> = ({ number, label, icon }) => {
   );
 };
 
-const StatsSection: React.FC = () => {
+const StatsSection = () => {
   const isMobile = useIsMobile();
   
   return (
