@@ -4,7 +4,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 
-const SimpleMap: React.FC = () => {
+const SimpleMap = () => {
   const isMobile = useIsMobile();
   
   return (

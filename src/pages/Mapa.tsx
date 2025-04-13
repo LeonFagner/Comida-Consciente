@@ -20,7 +20,7 @@ import {
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
-const Mapa: React.FC = () => {
+const Mapa = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
   

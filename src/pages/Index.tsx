@@ -10,49 +10,14 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
-import imgLegumes from '../assets/images/img-legumes.jpg';
-import imgFrutas from '../assets/images/img-frutasDiversas.jpg';
-import imgPaes from '../assets/images/img-paesArtesanais.jpg';
+import stats from '@/data/stats.json';
 
 
 const Index: React.FC = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
   
-  const recentDonations = [
-    {
-      id: 1,
-      title: "Frutas Diversas",
-      type: "Frutas",
-      quantity: "10kg",
-      expirationDate: "01/05/2025",
-      location: "Mercado Boa Escolha, São Paulo",
-      distance: "1.2km",
-      urgent: true,
-      imagem: imgFrutas
-    },
-    {
-      id: 2,
-      title: "Pães Artesanais",
-      type: "Padaria",
-      quantity: "15 unidades",
-      expirationDate: "28/04/2025",
-      location: "Padaria Sabor & Arte, São Paulo",
-      distance: "3.5km",
-      imagem: imgPaes
-    },
-    {
-      id: 3,
-      title: "Legumes Orgânicos",
-      type: "Feira Livre",
-      quantity: "8kg",
-      expirationDate: "30/04/2025",
-      location: "Feira da Praça, São Paulo",
-      distance: "0.8km",
-      imagem: imgLegumes
-    },
-  ];
-
+  
   const handleSchedule = () => {
     toast({
       title: "Agendamento iniciado",
@@ -85,18 +50,18 @@ const Index: React.FC = () => {
             </div>
             
             <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2 md:grid-cols-3'} gap-6`}>
-              {recentDonations.map(donation => (
+              {stats.map(stats => (
                 <FoodCard 
-                  key={donation.id}
-                  title={donation.title}
-                  type={donation.type}
-                  quantity={donation.quantity}
-                  expirationDate={donation.expirationDate}
-                  location={donation.location}
-                  distance={donation.distance}
-                  urgent={donation.urgent}
+                  key={stats.id}
+                  title={stats.title}
+                  type={stats.type}
+                  quantity={stats.quantity}
+                  expirationDate={stats.expirationDate}
+                  location={stats.location}
+                  distance={stats.distance}
+                  urgent={stats.urgent}
                   onSchedule={handleSchedule}
-                  image={donation.imagem}
+                  image={stats.image}
                 />
               ))}
             </div>

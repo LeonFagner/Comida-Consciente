@@ -1,9 +1,9 @@
 import React from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
-import imgAlimentos from '../assets/images/img-alimentos-1.jpg';
-import imgAgenda from '../assets/images/img-calendario-1.jpg';
-import imgMapa from '../assets/images/img-mapa-1.jpg';
-import imgRanking from '../assets/images/img-ranking.jpg';
+import imgAlimentos from '../../public/images/img-alimentos-1.jpg';
+import imgAgenda from '../../public/images/img-calendario-1.jpg';
+import imgMapa from '../../public/images/img-mapa-1.jpg';
+import imgRanking from '../../public/images/img-ranking.jpg';
 
 
 interface StepProps {

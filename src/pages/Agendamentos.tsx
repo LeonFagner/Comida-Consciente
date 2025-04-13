@@ -41,7 +41,7 @@ const StatusBadge: React.FC<{status: AgendamentoProps["status"]}> = ({status}) =
   }
 };
 
-const Agendamentos: React.FC = () => {
+const Agendamentos = () => {
   const { toast } = useToast();
   
   const agendamentosRecebimento = [

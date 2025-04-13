@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
-import Imagem from '../assets/images/bg-comidaVerde.jpg';
+import Imagem from '/images/bg-comidaVerde.jpg';
 
-const HeroSection: React.FC = () => {
+const HeroSection = () => {
   return (
     <section className="hero-gradient text-white py-20">
       <div className="container mx-auto px-4">
