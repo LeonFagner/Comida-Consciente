@@ -4,8 +4,9 @@ import Footer from '@/components/Footer';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import StatsSection from '@/components/StatsSection';
+import frutas from '../../public/images/img-verdurasFrescas.jpg';
 
-const Sobre: React.FC = () => {
+const Sobre = () => {
   const isMobile = useIsMobile();
   
   return (
@@ -50,8 +51,8 @@ const Sobre: React.FC = () => {
               </div>
               <div className="flex justify-center">
                 <div className="relative w-full max-w-md">
-                  <div className="aspect-square bg-cc-green-100 rounded-lg flex items-center justify-center">
-                    <div className="text-8xl">🌱</div>
+                  <div className="aspect-square rounded-lg flex items-center justify-center">
+                    <img className="rounded-3xl" src={frutas} alt="img-frutas" />
                   </div>
                   <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
                     <div className="text-4xl">♻️</div>
