@@ -19,69 +19,70 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import data from '../data/stats.json';
 
 const Mapa = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
   
-  const donations = [
-    {
-      id: 1,
-      title: "Frutas Diversas",
-      type: "Frutas",
-      quantity: "10kg",
-      expirationDate: "01/05/2025",
-      location: "Mercado Boa Escolha, São Paulo",
-      distance: "1.2km",
-      urgent: true,
-    },
-    {
-      id: 2,
-      title: "Pães Artesanais",
-      type: "Padaria",
-      quantity: "15 unidades",
-      expirationDate: "28/04/2025",
-      location: "Padaria Sabor & Arte, São Paulo",
-      distance: "3.5km",
-    },
-    {
-      id: 3,
-      title: "Legumes Orgânicos",
-      type: "Feira Livre",
-      quantity: "8kg",
-      expirationDate: "30/04/2025",
-      location: "Feira da Praça, São Paulo",
-      distance: "0.8km",
-    },
-    {
-      id: 4,
-      title: "Arroz e Feijão",
-      type: "Não-perecíveis",
-      quantity: "20kg",
-      expirationDate: "31/12/2025",
-      location: "Mercado do Povo, São Paulo",
-      distance: "5.1km",
-    },
-    {
-      id: 5,
-      title: "Verduras Frescas",
-      type: "Vegetais",
-      quantity: "15kg",
-      expirationDate: "29/04/2025",
-      location: "Horta Comunitária, São Paulo",
-      distance: "2.3km",
-      urgent: true,
-    },
-    {
-      id: 6,
-      title: "Laticínios",
-      type: "Laticínios",
-      quantity: "5kg",
-      expirationDate: "30/04/2025",
-      location: "Mercado Central, São Paulo",
-      distance: "4.7km",
-    },
-  ];
+  // const donations = [
+    // {
+    //   id: 1,
+    //   title: "Frutas Diversas",
+    //   type: "Frutas",
+    //   quantity: "10kg",
+    //   expirationDate: "01/05/2025",
+    //   location: "Mercado Boa Escolha, São Paulo",
+    //   distance: "1.2km",
+    //   urgent: true,
+    // },
+    // {
+    //   id: 2,
+    //   title: "Pães Artesanais",
+    //   type: "Padaria",
+    //   quantity: "15 unidades",
+    //   expirationDate: "28/04/2025",
+    //   location: "Padaria Sabor & Arte, São Paulo",
+    //   distance: "3.5km",
+    // },
+    // {
+    //   id: 3,
+    //   title: "Legumes Orgânicos",
+    //   type: "Feira Livre",
+    //   quantity: "8kg",
+    //   expirationDate: "30/04/2025",
+    //   location: "Feira da Praça, São Paulo",
+    //   distance: "0.8km",
+    // },
+    // {
+    //   id: 4,
+    //   title: "Arroz e Feijão",
+    //   type: "Não-perecíveis",
+    //   quantity: "20kg",
+    //   expirationDate: "31/12/2025",
+    //   location: "Mercado do Povo, São Paulo",
+    //   distance: "5.1km",
+    // },
+    // {
+    //   id: 5,
+    //   title: "Verduras Frescas",
+    //   type: "Vegetais",
+    //   quantity: "15kg",
+    //   expirationDate: "29/04/2025",
+    //   location: "Horta Comunitária, São Paulo",
+    //   distance: "2.3km",
+    //   urgent: true,
+    // },
+    // {
+    //   id: 6,
+    //   title: "Laticínios",
+    //   type: "Laticínios",
+    //   quantity: "5kg",
+    //   expirationDate: "30/04/2025",
+    //   location: "Mercado Central, São Paulo",
+    //   distance: "4.7km",
+    // },
+  // ];
 
   const handleSchedule = () => {
     toast({
@@ -204,17 +205,18 @@ const Mapa = () => {
                 </h2>
                 
                 <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
-                  {donations.map(donation => (
+                  {data.map(data => (
                     <FoodCard 
-                      key={donation.id}
-                      title={donation.title}
-                      type={donation.type}
-                      quantity={donation.quantity}
-                      expirationDate={donation.expirationDate}
-                      location={donation.location}
-                      distance={donation.distance}
-                      urgent={donation.urgent}
+                      key={data.id}
+                      title={data.title}
+                      type={data.type}
+                      quantity={data.quantity}
+                      expirationDate={data.expirationDate}
+                      location={data.location}
+                      distance={data.distance}
+                      urgent={data.urgent}
                       onSchedule={handleSchedule}
+                      image={data.image}
                     />
                   ))}
                 </div>

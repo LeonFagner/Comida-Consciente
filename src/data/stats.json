@@ -31,6 +31,39 @@
       "distance": "0.8km",
       "urgent": false,
       "image": "../../public/images/img-legumes.jpg"
+    },
+  
+    {
+      "id": 4,
+      "title": "Arroz e Feijão",
+      "type": "Não-perecíveis",
+      "quantity": "20kg",
+      "expirationDate": "31/12/2025",
+      "location": "Mercado do Povo, São Paulo",
+      "distance": "5.1km",
+      "image": "../../public/images/img-feijaoAroz.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Verduras Frescas",
+      "type": "Vegetais",
+      "quantity": "15kg",
+      "expirationDate": "29/04/2025",
+      "location": "Horta Comunitária, São Paulo",
+      "distance": "2.3km",
+      "urgent": true,
+      "image": "../../public/images/img-verdurasFrescas.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Laticínios",
+      "type": "Laticínios",
+      "quantity": "5kg",
+      "expirationDate": "30/04/2025",
+      "location": "Mercado Central, São Paulo",
+      "distance": "4.7km",
+      "image": "../../public/images/img-latacinios.jpg"
     }
+    
   ]
   
