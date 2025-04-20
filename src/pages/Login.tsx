@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,18 +7,40 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useToast } from '@/components/ui/use-toast';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useLogin } from '@/hooks/use-login';
 
-const Login: React.FC = () => {
+const Login = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
-  
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { mutate } = useLogin({
+    onSuccess: (user) => {
+      const name = user.fullName.split(" ")[0];
+      console.log(name)
+      toast({
+        title: "Login realizado",
+        description: `Bem vindo ${name} `,
+      });
+      navigate("/");
+    },
+    onError: (msg) => {
+      toast({
+        title: "Erro no login",
+        description: msg,
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-      title: "Login realizado",
-      description: "Você foi autenticado com sucesso!",
-    });
+    mutate({ email, password });
+    console.log(email)
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -38,7 +60,15 @@ const Login: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="seu@email.com" required className="input-focus" />
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="seu@email.com" 
+                    required 
+                    className="input-focus"
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                  />
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
@@ -47,7 +77,14 @@ const Login: React.FC = () => {
                       Esqueceu a senha?
                     </Link>
                   </div>
-                  <Input id="password" type="password" required className="input-focus" />
+                  <Input 
+                    id="password" 
+                    type="password" 
+                    required 
+                    className="input-focus"
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                  />
                 </div>
                 <Button type="submit" className="w-full bg-cc-green-600 hover:bg-cc-green-700">
                   Entrar

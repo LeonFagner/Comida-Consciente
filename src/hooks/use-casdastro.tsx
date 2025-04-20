@@ -21,7 +21,7 @@ export const useCadastro = ({ onSuccess, onError }: {
 }) => {
   const mutation = useMutation({
     mutationFn: async (form: CadastroData) => {
-      const { data } = await axios.get("http://localhost:3001/usuarios", {
+      const { data } = await axios.get("http://localhost:3001/user", {
         params: { email: form.email }
       });
 
@@ -34,7 +34,7 @@ export const useCadastro = ({ onSuccess, onError }: {
       }
 
       const payload = { ...form, id: uuidv4() };
-      return await axios.post("http://localhost:3001/usuarios", payload);
+      return await axios.post("http://localhost:3001/user", payload);
     },
     onSuccess,
     onError: (err: any) => {

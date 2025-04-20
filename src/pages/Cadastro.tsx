@@ -14,7 +14,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 import { useCadastro } from '@/hooks/use-casdastro';
-import Loading from '@/components/ui/loading';
+
 
 interface CadastroData {
   tipo: string;

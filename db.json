@@ -1,16 +1,16 @@
 {
-  "usuarios": [
+  "users": [
     {
       "id": "d02fa3b1-e6c3-49ae-bc7c-8bba6e679a9c",
-      "tipo": "",
-      "nomeCompleto": "LEON FAGNER LEVINO SANTOS",
+      "type": "",
+      "fullName": "LEON FAGNER LEVINO SANTOS",
       "cpf": "089.673.515-00",
       "email": "leonfagnerr@gmail.com",
-      "telefone": "47992884176",
-      "senha": "leon",
-      "confirmarSenha": "leon",
-      "interesse": "",
-      "endereco": "Rua Emma Rumpel Bartel, SN"
+      "phone": "47992884176",
+      "password": "leon",
+      "confirmPassword": "leon",
+      "interest": "",
+      "address": "Rua Emma Rumpel Bartel, SN"
     }
   ]
 }
