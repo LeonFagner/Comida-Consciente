@@ -16,10 +16,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+ 
+
   const { mutate } = useLogin({
     onSuccess: (user) => {
-      const name = user.fullName.split(" ")[0];
-      console.log(name)
+      let name = user.fullName.split(" ")[0];
+      name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      
       toast({
         title: "Login realizado",
         description: `Bem vindo ${name} `,
@@ -38,7 +41,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate({ email, password });
-    console.log(email)
+    
   };
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
@@ -9,10 +9,34 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
+import { useLogin } from '@/hooks/use-login';
 
-const Navbar: React.FC = () => {
+
+const Navbar = () => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
+  const { isLogin, setIsLogin } = useLogin({
+    onSuccess: (user) => {
+      console.log("Usuário logado:", user);
+    },
+    onError: (msg) => {
+      alert(msg);
+    },
+  });
+
+  const handleClick = () => {
+    if (isLogin) {
+      setIsLogin(false);
+      localStorage.removeItem("isLogin");
+      navigate("/"); 
+    } else {
+      navigate("/login"); 
+  };
+}
+
+  
+  
   return (
     <nav className="bg-white py-4 shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -64,9 +88,9 @@ const Navbar: React.FC = () => {
               <Link to="/sobre" className="text-cc-green-700 hover:text-cc-green-500 font-medium">Sobre</Link>
             </div>
             <div className="flex gap-2">
-              <Link to="/login">
-                <Button variant="outline" className="border-cc-green-500 text-cc-green-700 hover:bg-cc-green-700" >Entrar</Button>
-              </Link>
+              
+                <Button onClick={handleClick} variant="outline" className="border-cc-green-500 text-cc-green-700 hover:bg-cc-green-700" >{isLogin? "Sair" : "Entrar"}</Button>
+              
               <Link to="/cadastro">
                 <Button className="bg-cc-green-600 hover:bg-cc-green-700">Cadastrar</Button>
               </Link>
