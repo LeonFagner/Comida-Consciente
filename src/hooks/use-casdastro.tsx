@@ -21,7 +21,7 @@ export const useCadastro = ({ onSuccess, onError }: {
 }) => {
   const mutation = useMutation({
     mutationFn: async (form: CadastroData) => {
-      const { data } = await axios.get("http://localhost:3001/user", {
+      const { data } = await axios.get("http://localhost:3001/users", {
         params: { email: form.email }
       });
 
@@ -32,9 +32,12 @@ export const useCadastro = ({ onSuccess, onError }: {
       if (form.senha !== form.confirmarSenha) {
         throw new Error("As senhas não coincidem.");
       }
+      if(form.cpf ! == form.cpf){
+        throw new Error("Cpf ja cadastrado!")
+      }
 
       const payload = { ...form, id: uuidv4() };
-      return await axios.post("http://localhost:3001/user", payload);
+      return await axios.post("http://localhost:3001/users", payload);
     },
     onSuccess,
     onError: (err: any) => {

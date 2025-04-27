@@ -27,7 +27,7 @@ import {
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
-const Doar: React.FC = () => {
+const Doar = () => {
   const { toast } = useToast();
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

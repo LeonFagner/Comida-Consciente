@@ -11,6 +11,18 @@
       "confirmPassword": "leon",
       "interest": "",
       "address": "Rua Emma Rumpel Bartel, SN"
+    },
+    {
+      "id": "19adac02-cf84-4e03-bb62-588c9026ccd6",
+      "tipo": "",
+      "nomeCompleto": "LEON FAGNER LEVINO SANTOS",
+      "cpf": "089.673.515-00",
+      "email": "leonfagnerddrs@test.comm",
+      "telefone": "47992884176",
+      "senha": "Leonfagner02",
+      "confirmarSenha": "Leonfagner02",
+      "interesse": "",
+      "endereco": "Rua Emma Rumpel Bartel, SN"
     }
   ]
 }

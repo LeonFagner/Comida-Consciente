@@ -1,15 +1,11 @@
-import React from 'react';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
 import { useLogin } from '@/hooks/use-login';
+import { toast } from '@/hooks/use-toast';
 
 
 const Navbar = () => {
@@ -26,10 +22,15 @@ const Navbar = () => {
   });
 
   const handleClick = () => {
+    
     if (isLogin) {
       setIsLogin(false);
       localStorage.removeItem("isLogin");
-      navigate("/"); 
+      toast({
+        title: "Logout realizado",
+        description: `Até logo!`,
+      });
+      navigate("/");
     } else {
       navigate("/login"); 
   };
@@ -92,7 +93,7 @@ const Navbar = () => {
                 <Button onClick={handleClick} variant="outline" className="border-cc-green-500 text-cc-green-700 hover:bg-cc-green-700" >{isLogin? "Sair" : "Entrar"}</Button>
               
               <Link to="/cadastro">
-                <Button className="bg-cc-green-600 hover:bg-cc-green-700">Cadastrar</Button>
+                <Button className={`bg-cc-green-600 hover:bg-cc-green-700 ${!isLogin ? 'Cadastrar' : 'hidden'}`}> Cadastrar</Button>
               </Link>
             </div>
           </div>

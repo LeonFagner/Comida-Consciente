@@ -14,15 +14,15 @@ type UseLoginProps = {
 
 export function useLogin({ onSuccess, onError }: UseLoginProps) {
   const [isLogin, setIsLogin] = useState(() => {
-    
+
     return localStorage.getItem("isLogin") === "true";
 
-   });
-  
+  });
 
- 
+
+
   useEffect(() => {
-    
+
     localStorage.setItem("isLogin", String(isLogin));
   }, [isLogin]);
 

@@ -15,6 +15,10 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [erroEmail, setErroEmail] = useState(false);
+  const [erroPassword, setErroPassword] = useState(false);
+  
+  
 
  
 
@@ -27,6 +31,8 @@ const Login = () => {
         title: "Login realizado",
         description: `Bem vindo ${name} `,
       });
+      setErroEmail(false);
+      setErroPassword(false);
       navigate("/");
     },
     onError: (msg) => {
@@ -35,6 +41,9 @@ const Login = () => {
         description: msg,
         variant: "destructive",
       });
+      setErroEmail(true);
+      setErroPassword(true);
+      
     },
   });
 
@@ -68,7 +77,7 @@ const Login = () => {
                     type="email" 
                     placeholder="seu@email.com" 
                     required 
-                    className="input-focus"
+                    className={`input-focus ${erroEmail? "border-red-700" : "border-collapse" } `}
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                   />
@@ -84,7 +93,7 @@ const Login = () => {
                     id="password" 
                     type="password" 
                     required 
-                    className="input-focus"
+                    className={`input-focus  ${erroPassword? "border-red-700" : "border-collapse" }`}
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
                   />
