@@ -14,7 +14,7 @@ const Login = () => {
   const { toast } = useToast();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setPassword] = useState("");
   const [erroEmail, setErroEmail] = useState(false);
   const [erroPassword, setErroPassword] = useState(false);
   
@@ -22,9 +22,9 @@ const Login = () => {
 
  
 
-  const { mutate } = useLogin({
-    onSuccess: (user) => {
-      let name = user.fullName.split(" ")[0];
+  const { mutate } =  useLogin({
+    onSuccess:  (user) =>  {
+      let name = user.nomeCompleto.split(" ")[0];
       name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
       
       toast({
@@ -49,7 +49,7 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate({ email, password });
+    mutate({ email, senha });
     
   };
 
@@ -94,7 +94,7 @@ const Login = () => {
                     type="password" 
                     required 
                     className={`input-focus  ${erroPassword? "border-red-700" : "border-collapse" }`}
-                    value={password} 
+                    value={senha} 
                     onChange={(e) => setPassword(e.target.value)} 
                   />
                 </div>

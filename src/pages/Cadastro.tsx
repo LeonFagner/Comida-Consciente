@@ -26,6 +26,7 @@ interface CadastroData {
   confirmarSenha: string;
   interesse: string;
   endereco: string;
+  nonce: string
 }
 
 export const Cadastro = () => {
@@ -41,7 +42,8 @@ export const Cadastro = () => {
     senha: "",
     confirmarSenha: "",
     interesse: "",
-    endereco: ""
+    endereco: "",
+    nonce:""
   });
 
   const { mutate } = useCadastro({

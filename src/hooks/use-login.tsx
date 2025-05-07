@@ -1,10 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { hashPassword } from "./use-casdastro";
 
 type LoginData = {
   email: string;
-  password: string;
+  senha: string;
 };
 
 type UseLoginProps = {
@@ -21,21 +22,32 @@ export function useLogin({ onSuccess, onError }: UseLoginProps) {
 
 
 
+
+
   useEffect(() => {
 
     localStorage.setItem("isLogin", String(isLogin));
   }, [isLogin]);
 
   const mutation = useMutation({
-    mutationFn: async ({ email, password }: LoginData) => {
+    mutationFn: async (form: LoginData) => {
       const response = await axios.get("http://localhost:3001/users", {
-        params: { email },
+        params: { email: form.email },
       });
+
 
       const user = response.data[0];
 
-      if (!user) throw new Error("Usuário não encontrado");
-      if (user.password !== password) throw new Error("Senha incorreta");
+
+      if (!user)
+        throw new Error("Usuário não encontrado");
+
+      const hashPasswordAtt = await hashPassword(form.email, form.senha, user.nonce);
+
+
+      if (user.senha !== hashPasswordAtt) {
+        throw new Error("Senha incorreta");
+      }
 
       setIsLogin(true);
       return user;
