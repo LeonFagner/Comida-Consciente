@@ -1,35 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
+import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover";
 import { Calendar } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
+import DatePicker from 'react-datepicker';
+
+import { ptBR } from 'date-fns/locale';
+import { data } from 'react-router-dom';
+
+
+
+interface Donate {
+  nomeItem: "",
+  categoria: "",
+  quantidade: "",
+  unidade: "",
+  validade: "",
+  endereco: "",
+  horarios: "",
+  contato: "",
+  observacoes: "",
+  data: string,
+  urgente: "false",
+}
+
+
+
 const Doar = () => {
   const { toast } = useToast();
-  
+  const [form, setForm] = useState<Donate>({
+    nomeItem: "",
+    categoria: "",
+    quantidade: "",
+    unidade: "",
+    validade: "",
+    endereco: "",
+    horarios: "",
+    contato: "",
+    observacoes: "",
+    data:  "",
+    urgente: "false",
+  });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     toast({
@@ -37,18 +56,18 @@ const Doar = () => {
       description: "Sua doação foi cadastrada com sucesso!",
     });
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-3xl font-bold text-cc-green-700 mb-6">
               Cadastrar Doação de Alimentos
             </h1>
-            
+
             <Card>
               <CardHeader>
                 <CardTitle>Detalhes da Doação</CardTitle>
@@ -57,25 +76,26 @@ const Doar = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit}
+                  className="space-y-6">
                   <div className="space-y-4">
                     <div>
                       <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                         Nome do Item *
                       </label>
-                      <Input required placeholder="Ex: Frutas Diversas, Arroz, Leite" className="input-focus" />
+                      <Input required placeholder="Ex: Frutas Diversas, Arroz, Leite" className="input-focus" value={form.nomeItem} />
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                           Categoria *
                         </label>
-                        <Select required>
+                        <Select required value={form.categoria}>
                           <SelectTrigger>
                             <SelectValue placeholder="Selecione uma categoria" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent >
                             <SelectItem value="frutas">Frutas</SelectItem>
                             <SelectItem value="vegetais">Vegetais</SelectItem>
                             <SelectItem value="nao-pereciveis">Não-perecíveis</SelectItem>
@@ -85,13 +105,13 @@ const Doar = () => {
                           </SelectContent>
                         </Select>
                       </div>
-                      
+
                       <div>
                         <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                           Quantidade *
                         </label>
                         <div className="flex space-x-2">
-                          <Input required placeholder="Ex: 10" className="input-focus" />
+                          <Input required placeholder="Ex: 10" className="input-focus" value={form.quantidade} />
                           <Select defaultValue="kg">
                             <SelectTrigger className="w-[100px]">
                               <SelectValue placeholder="Unidade" />
@@ -107,7 +127,7 @@ const Doar = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                         Data de Validade *
@@ -119,58 +139,65 @@ const Doar = () => {
                             className="w-full justify-start text-left font-normal input-focus"
                           >
                             <Calendar className="mr-2 h-4 w-4" />
-                            <span>Selecionar data</span>
+                            <span>
+                            {form.data ? `${form.data}` : 'Selecionar data'}
+                            </span>
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0" align="start">
                           <div className="p-4 bg-white">
-                            <p className="text-center text-sm">Componente de calendário aqui</p>
+                            <input
+                              type="date"
+                              value={form.data}
+                              onChange={(e) => setForm({ ...form, data: e.target.value })}
+                              className="input-data"
+                            />
                           </div>
                         </PopoverContent>
                       </Popover>
                     </div>
-                    
+
                     <div>
                       <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                         Endereço de Retirada *
                       </label>
-                      <Input required placeholder="Digite o endereço completo" className="input-focus" />
+                      <Input required placeholder="Digite o endereço completo" className="input-focus" value={form.endereco} />
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                           Horários de Retirada Disponíveis *
                         </label>
-                        <Input required placeholder="Ex: Segunda a Sexta, 9h às 18h" className="input-focus" />
+                        <Input required placeholder="Ex: Segunda a Sexta, 9h às 18h" className="input-focus" value={form.horarios} />
                       </div>
-                      
+
                       <div>
                         <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                           Contato *
                         </label>
-                        <Input required placeholder="Telefone ou email" className="input-focus" />
+                        <Input required placeholder="Telefone ou email" className="input-focus" value={form.contato} />
                       </div>
                     </div>
-                    
+
                     <div>
                       <label className="text-sm font-medium text-cc-green-700 mb-1 block">
                         Observações
                       </label>
-                      <Textarea placeholder="Informações adicionais sobre a doação" className="input-focus" />
+                      <Textarea placeholder="Informações adicionais sobre a doação" className="input-focus" value={form.observacoes} />
                     </div>
-                    
+
                     <div className="flex items-center">
-                      <input type="checkbox" id="urgent" className="h-4 w-4 rounded border-gray-300 text-cc-green-600 focus:ring-cc-green-500" />
+                      <input type="checkbox" id="urgent" className="h-4 w-4 rounded border-gray-300 text-cc-green-600 focus:ring-cc-green-500" value={form.urgente} />
                       <label htmlFor="urgent" className="ml-2 block text-cc-green-700">
                         Marcar como urgente (validade próxima)
                       </label>
                     </div>
                   </div>
-                  
+
                   <div className="pt-2">
-                    <Button 
-                      type="submit" 
+                    <Button
+                      type="submit"
                       className="w-full bg-cc-green-600 hover:bg-cc-green-700"
                     >
                       Cadastrar Doação
@@ -180,7 +207,7 @@ const Doar = () => {
               </CardContent>
               <CardFooter className="bg-cc-green-50 text-sm text-cc-green-700">
                 <p>
-                  Os alimentos cadastrados ficarão disponíveis para visualização no mapa 
+                  Os alimentos cadastrados ficarão disponíveis para visualização no mapa
                   e poderão ser reservados por instituições e pessoas cadastradas.
                 </p>
               </CardFooter>
@@ -188,7 +215,7 @@ const Doar = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
